@@ -1,0 +1,9 @@
+{
+  "name": "clf-c02-scripts",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0"
+  }
+}

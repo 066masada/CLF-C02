@@ -1,0 +1,29 @@
+{
+  "rules": {
+    "quizSessions": {
+      "$userId": {
+        ".read": "auth != null",
+        ".write": "auth != null"
+      }
+    },
+    "userStats": {
+      ".read": "auth != null",
+      "$userId": {
+        ".write": "auth != null",
+        ".validate": "newData.hasChildren(['userId', 'displayName', 'totalAnswered', 'totalCorrect'])"
+      }
+    },
+    "usersByName": {
+      ".read": "auth != null",
+      "$nameKey": {
+        ".write": "auth != null"
+      }
+    },
+    "missionProgress": {
+      "$userId": {
+        ".read": "auth != null",
+        ".write": "auth != null"
+      }
+    }
+  }
+}
