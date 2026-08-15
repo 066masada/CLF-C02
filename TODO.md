@@ -3,6 +3,8 @@
 最終更新: 2026-08-15
 このファイルは別セッションでの継続作業用です。作業が進んだら都度更新・チェックしてください。
 
+**現在の状態**: GitHub push済み（https://github.com/066masada/CLF-C02 ／ 最新コミット `d2fa234`）、Firebase Hosting公開済み（https://clf-c02.web.app ／ v0.2.0）。ステップ1〜3完了、ステップ4（問題データ）はサンプル25問のみ、ステップ5（コンテンツ書き換え）は用語集のみ完了。詳細は下記「未完了タスク」参照。
+
 ## これまでにやったこと
 
 AIF-C01アプリ（`c:\work\KG\AIF-C01`）を土台に、`c:\work\KG\CLF-C02` へ新規リポジトリとして複製した。
@@ -38,7 +40,7 @@ AIF-C01とデータを分離するため、新しいFirebaseプロジェクト�
 - [x] Realtime Databaseを有効化・ルールをデプロイ（`https://clf-c02-default-rtdb.firebaseio.com/`）
 - [x] `.env.example` を `.env` にコピーし、新プロジェクトの値を記入（`.gitignore`対象を確認済み）
 - [x] `.firebaserc` の `default` を新プロジェクトIDに書き換え（`clf-c02`）
-- [ ] Firebase Hostingサイトを用意し `firebase deploy` できることを確認（動作確認フェーズ＝ステップ6でまとめて実施）
+- [x] Firebase Hostingサイトを用意し `firebase deploy` できることを確認（公開URL: https://clf-c02.web.app ／ PWAオフライン動作の実機確認はステップ6で継続実施）
 
 ### 3. 出題ドメイン構成の再設計（コンテンツ作成の前提） 【完了】
 CLF-C02の出題ドメイン（AWS公式試験ガイド）:
