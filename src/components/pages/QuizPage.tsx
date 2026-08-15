@@ -12,12 +12,11 @@ const NUM_OPTIONS = [5, 10, 20, 65, questions.length] as const;
 const DONT_KNOW = -2;
 
 const CATEGORY_OPTIONS: { value: QuestionCategory | 'mixed'; label: string }[] = [
-  { value: 'mixed',           label: '全カテゴリ混合' },
-  { value: 'ai-basics',       label: categoryLabels['ai-basics'] },
-  { value: 'ml-fundamentals', label: categoryLabels['ml-fundamentals'] },
-  { value: 'aws-services',    label: categoryLabels['aws-services'] },
-  { value: 'ethics',          label: categoryLabels['ethics'] },
-  { value: 'practice',        label: categoryLabels['practice'] },
+  { value: 'mixed',                 label: '全カテゴリ混合' },
+  { value: 'cloud-concepts',        label: categoryLabels['cloud-concepts'] },
+  { value: 'security-compliance',   label: categoryLabels['security-compliance'] },
+  { value: 'cloud-technology',      label: categoryLabels['cloud-technology'] },
+  { value: 'billing-support',       label: categoryLabels['billing-support'] },
 ];
 
 const timeLimitSeconds = (numQuestions: number): number => {

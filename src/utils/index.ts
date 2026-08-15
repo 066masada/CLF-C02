@@ -64,7 +64,7 @@ export const calculatePassProbability = (stats: UserStats): number => {
   const adjustedAcc = weightedAcc * volumeFactor + PRIOR * (1 - volumeFactor);
 
   // Domain coverage penalty: 0.80 (no coverage) → 1.0 (full coverage)
-  const CATS: QuestionCategory[] = ['ai-basics', 'ml-fundamentals', 'aws-services', 'ethics', 'practice'];
+  const CATS: QuestionCategory[] = ['cloud-concepts', 'security-compliance', 'cloud-technology', 'billing-support'];
   const covered = CATS.filter((c) => (categoryStats?.[c]?.total ?? 0) >= 5).length;
   const domainFactor = 0.80 + 0.20 * (covered / CATS.length);
 

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { categoryLabels } from '../data/clf-c02-questions';
 import type { QuestionCategory, QuizSession } from '../types/index';
 
-const CATEGORY_ORDER: QuestionCategory[] = ['ai-basics', 'ml-fundamentals', 'aws-services', 'ethics', 'practice'];
+const CATEGORY_ORDER: QuestionCategory[] = ['cloud-concepts', 'security-compliance', 'cloud-technology', 'billing-support'];
 const PAGE_SIZE = 8;
 
 const labelFor = (cat: QuestionCategory | 'mixed'): string =>

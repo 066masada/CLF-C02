@@ -30,11 +30,10 @@ const client = new Anthropic();
 // カテゴリとIDプレフィックスの対応
 // -----------------------------------------------------------------------
 const ID_PREFIX = {
-  'ai-basics':        'ai',
-  'ml-fundamentals':  'ml',
-  'aws-services':     'aws',
-  'ethics':           'ethics',
-  'practice':         'practice',
+  'cloud-concepts':      'cc',
+  'security-compliance': 'sec',
+  'cloud-technology':    'tech',
+  'billing-support':     'bill',
 };
 
 // -----------------------------------------------------------------------
@@ -52,7 +51,7 @@ const SYSTEM_PROMPT = `あなたはAWS CLF-C02（AWS Certified Cloud Practitione
     "options": ["選択肢A本文", "選択肢B本文", "選択肢C本文", "選択肢D本文"],
     "correctAnswer": 0,
     "explanation": "正解の解説文",
-    "category": "ai-basics | ml-fundamentals | aws-services | ethics | practice",
+    "category": "cloud-concepts | security-compliance | cloud-technology | billing-support",
     "difficulty": "easy | medium | hard",
     "tags": ["キーワード1", "キーワード2"]
   }
@@ -62,11 +61,10 @@ const SYSTEM_PROMPT = `あなたはAWS CLF-C02（AWS Certified Cloud Practitione
 - options は A/B/C/D などの記号を除いたテキストのみを含める
 - correctAnswer は 0始まりのインデックス（Aなら0, Bなら1, Cなら2, Dなら3）
 - category は問題の内容から最適なものを選ぶ:
-    ai-basics       → AIの基礎概念、機械学習の基本
-    ml-fundamentals → ML手法、アルゴリズム、データ処理
-    aws-services    → AWS AI/MLサービス（SageMaker、Bedrock等）
-    ethics          → AI倫理、責任あるAI、バイアス、セキュリティ
-    practice        → 模擬問題・総合問題
+    cloud-concepts      → クラウドの価値提案、経済性、主要な設計原則
+    security-compliance → 責任共有モデル、IAM、コンプライアンス、セキュリティサービス
+    cloud-technology    → AWSのデプロイ方法、グローバルインフラ、コアAWSサービス
+    billing-support     → 請求・コスト管理、料金モデル、サポートプラン
 - difficulty は easy/medium/hard で主観的に判断
 - tags は問題のキーワードを2〜4個（英語推奨）
 - スクリーンショットに複数の問題があれば全て抽出すること
@@ -135,11 +133,10 @@ async function extractFromImage(imagePath) {
 // -----------------------------------------------------------------------
 function readExistingMaxIds() {
   const maxIds = {
-    'ai-basics':       0,
-    'ml-fundamentals': 0,
-    'aws-services':    0,
-    'ethics':          0,
-    'practice':        0,
+    'cloud-concepts':      0,
+    'security-compliance': 0,
+    'cloud-technology':    0,
+    'billing-support':     0,
   };
 
   if (!fs.existsSync(QUESTIONS_FILE)) return maxIds;

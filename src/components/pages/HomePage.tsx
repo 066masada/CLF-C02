@@ -23,7 +23,7 @@ import type { UserStats, QuizSession } from '../../types/index';
 
 interface BoardEntry { stats: UserStats; prob: number; }
 
-const CATEGORY_ORDER = ['ai-basics', 'ml-fundamentals', 'aws-services', 'ethics', 'practice'] as const;
+const CATEGORY_ORDER = ['cloud-concepts', 'security-compliance', 'cloud-technology', 'billing-support'] as const;
 const DAY_LABELS = ['日', '月', '火', '水', '木', '金', '土'];
 
 export const HomePage = () => {

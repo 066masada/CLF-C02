@@ -1,5 +1,5 @@
 export type QuestionDifficulty = 'easy' | 'medium' | 'hard';
-export type QuestionCategory = 'ai-basics' | 'ml-fundamentals' | 'aws-services' | 'ethics' | 'practice';
+export type QuestionCategory = 'cloud-concepts' | 'security-compliance' | 'cloud-technology' | 'billing-support';
 
 export interface Question {
   id: string;

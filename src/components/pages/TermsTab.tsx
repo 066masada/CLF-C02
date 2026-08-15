@@ -11,12 +11,11 @@ const IMPORTANCE_COLOR: Record<string, string> = {
 };
 
 const ALL_CATEGORIES: { value: GlossaryCategory | 'all'; label: string }[] = [
-  { value: 'all',       label: 'すべて' },
-  { value: 'ai-ml',    label: glossaryCategoryLabels['ai-ml'] },
-  { value: 'generative', label: glossaryCategoryLabels['generative'] },
-  { value: 'aws',      label: glossaryCategoryLabels['aws'] },
-  { value: 'ethics',   label: glossaryCategoryLabels['ethics'] },
-  { value: 'security', label: glossaryCategoryLabels['security'] },
+  { value: 'all',                  label: 'すべて' },
+  { value: 'cloud-concepts',       label: glossaryCategoryLabels['cloud-concepts'] },
+  { value: 'security-compliance',  label: glossaryCategoryLabels['security-compliance'] },
+  { value: 'cloud-technology',     label: glossaryCategoryLabels['cloud-technology'] },
+  { value: 'billing-support',      label: glossaryCategoryLabels['billing-support'] },
 ];
 
 function shuffle<T>(arr: T[]): T[] {

@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import { questions, questionsByCategory } from '../data/clf-c02-questions';
 import type { QuestionCategory } from '../types/index';
 
-const ALL_CATEGORIES = ['ai-basics', 'ml-fundamentals', 'aws-services', 'ethics', 'practice'] as const;
+const ALL_CATEGORIES = ['cloud-concepts', 'security-compliance', 'cloud-technology', 'billing-support'] as const;
 
 export const useQuestionsStore = () => {
   const [selectedCategory, setSelectedCategory] = useState<QuestionCategory | 'all'>('all');

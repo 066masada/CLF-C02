@@ -28,46 +28,43 @@ AIF-C01アプリ（`c:\work\KG\AIF-C01`）を土台に、`c:\work\KG\CLF-C02` �
 
 ## 未完了タスク（優先順）
 
-### 1. GitHubリポジトリの作成とpush
-- [ ] GitHubで新規リポジトリを作成（例: `066masada/CLF-C02`）
-- [ ] ローカルにリモートを追加してpush
-  ```bash
-  cd "c:/work/KG/CLF-C02"
-  git remote add origin https://github.com/066masada/CLF-C02.git
-  git push -u origin master
-  ```
+### 1. GitHubリポジトリの作成とpush 【完了】
+- [x] GitHubで新規リポジトリを作成（`066masada/CLF-C02`）
+- [x] ローカルにリモートを追加してpush
 
 ### 2. Firebaseプロジェクトの新規作成
 AIF-C01とデータを分離するため、新しいFirebaseプロジェクトが必要。
-- [ ] Firebaseコンソールで新規プロジェクト・Webアプリを作成
-- [ ] Realtime Databaseを有効化（ルールは `database.rules.json` をそのまま流用可、内容は汎用的でCLF-C02固有の記述なし）
-- [ ] `.env.example` を `.env` にコピーし、新プロジェクトの値を記入
-- [ ] `.firebaserc` の `default` を新プロジェクトIDに書き換え
-- [ ] Firebase Hostingサイトを用意し `firebase deploy` できることを確認
+- [x] Firebaseコンソールで新規プロジェクト・Webアプリを作成（プロジェクトID: `clf-c02`）
+- [x] Realtime Databaseを有効化・ルールをデプロイ（`https://clf-c02-default-rtdb.firebaseio.com/`）
+- [x] `.env.example` を `.env` にコピーし、新プロジェクトの値を記入（`.gitignore`対象を確認済み）
+- [x] `.firebaserc` の `default` を新プロジェクトIDに書き換え（`clf-c02`）
+- [ ] Firebase Hostingサイトを用意し `firebase deploy` できることを確認（動作確認フェーズ＝ステップ6でまとめて実施）
 
-### 3. 出題ドメイン構成の再設計（コンテンツ作成の前提）
+### 3. 出題ドメイン構成の再設計（コンテンツ作成の前提） 【完了】
 CLF-C02の出題ドメイン（AWS公式試験ガイド）:
-| ドメイン | 比率 |
-|---|---|
-| Domain 1: Cloud Concepts | 24% |
-| Domain 2: Security and Compliance | 30% |
-| Domain 3: Cloud Technology and Services | 34% |
-| Domain 4: Billing, Pricing, and Support | 12% |
+| ドメイン | 比率 | QuestionCategoryキー |
+|---|---|---|
+| Domain 1: Cloud Concepts | 24% | `cloud-concepts` |
+| Domain 2: Security and Compliance | 30% | `security-compliance` |
+| Domain 3: Cloud Technology and Services | 34% | `cloud-technology` |
+| Domain 4: Billing, Pricing, and Support | 12% | `billing-support` |
 
-- [ ] `src/types/index.ts` の `QuestionCategory` をCLF-C02のカテゴリ構成に再定義
-      （現状は暫定で AIF-C01 の `'ai-basics' | 'ml-fundamentals' | 'aws-services' | 'ethics' | 'practice'` のまま）
-- [ ] `src/data/clf-c02-questions.ts` 内の `questionsByCategory` / `categoryLabels` / `radarCategoryLabels` を新カテゴリに合わせて更新
-- [ ] `src/utils/index.ts` の `calculatePassProbability`（付近）内の `CATS` 配列も新カテゴリに合わせて更新（合格確率計算のドメインカバレッジ判定に使用）
+- [x] `src/types/index.ts` の `QuestionCategory` を上記4ドメインに再定義
+- [x] `src/data/clf-c02-questions.ts` 内の `questionsByCategory` / `categoryLabels` / `radarCategoryLabels` を新カテゴリに更新
+- [x] `src/utils/index.ts` の `CATS` 配列を新カテゴリに更新
+- [x] （追加対応）型エラー解消のため以下も新カテゴリに合わせて更新: `src/components/HistoryTimeline.tsx`、`src/hooks/useQuestionsStore.ts`、`src/components/pages/QuizPage.tsx`、`src/components/pages/HomePage.tsx`、`src/data/missions.ts`（各ミッション章の`category`値。**旧カテゴリからの暫定マッピングのみ**で、ストーリー内容自体はAIF-C01のまま＝ステップ5で要書き換え）
+- [x] `npm run build` で型エラーなしを確認
 
-### 4. 問題データの作成
-- [ ] `src/data/clf-c02-questions.ts` の `questions` 配列に問題を追加（現在は空配列）
-  - 型は `Question`（`src/types/index.ts`）: `id`, `category`, `difficulty`, `question`, `description`, `options`, `correctAnswer`, `explanation`, `tags`, `verified`
-  - 参考: `scripts/extract-questions.mjs` は画像/PDFの模擬試験からGPT等で問題を抽出するスクリプト（AIF-C01用に作ったものbut汎用的に使えるはず。プロンプト文言はCLF-C02向けに直しておいた）
+### 4. 問題データの作成 【一部完了（サンプル25問）】
+- [x] `src/data/clf-c02-questions.ts` の `questions` 配列にサンプル問題25問を追加
+      （cloud-concepts 6問 / security-compliance 6問 / cloud-technology 9問 / billing-support 4問。ビルド確認済み）
+- [ ] 本番運用に足る問題数まで増強（各ドメインとも数十問規模が望ましい）
+- [x] （追加対応）`scripts/extract-questions.mjs` のカテゴリ定義がAIF-C01の旧カテゴリ（ai-basics等）のまま放置されていたため、新4ドメイン（cloud-concepts / security-compliance / cloud-technology / billing-support）に合わせて`ID_PREFIX`とプロンプト文言を修正済み
 
 ### 5. その他コンテンツの書き換え（AIF-C01の内容がそのまま残っている）
-- [ ] `src/data/glossary.ts` — 用語集
+- [x] `src/data/glossary.ts` — 用語集をCLF-C02の4ドメイン構成（cloud-concepts / security-compliance / cloud-technology / billing-support）で47語に書き換え済み。`GlossaryCategory`型・`src/components/pages/TermsTab.tsx`のカテゴリ一覧も合わせて更新、ビルド確認済み
 - [ ] `src/data/study-notes.ts` — 学習ノート
-- [ ] `src/data/missions.ts` — ロールプレイ学習のストーリー・章構成（キャラクター会話含む、AIF-C01の13章構成がそのまま残っている）
+- [ ] `src/data/missions.ts` — ロールプレイ学習のストーリー・章構成（キャラクター会話含む、AIF-C01の13章構成がそのまま残っている。**注**: `category`フィールドの値は既にステップ3で新4ドメインへ暫定マッピング済みだが、ストーリー内容自体はAI/ML題材のまま未着手）
 - [ ] `TECHNICAL.md` 本文（URL・リポジトリリンク・問題数・出題比率表など）
 
 ### 6. 動作確認
