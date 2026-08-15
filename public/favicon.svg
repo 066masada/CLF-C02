@@ -5,24 +5,24 @@
   <!-- Top accent bar -->
   <rect x="80" y="68" width="352" height="4" rx="2" fill="rgba(255,255,255,0.18)"/>
 
-  <!-- "AIF" — main identifier -->
+  <!-- "CLF" — main identifier -->
   <text x="256" y="318"
     text-anchor="middle"
     font-family="-apple-system,'Helvetica Neue',Helvetica,Arial,sans-serif"
     font-weight="800"
     font-size="208"
     letter-spacing="-6"
-    fill="white">AIF</text>
+    fill="white">CLF</text>
 
   <!-- Hairline divider -->
   <rect x="148" y="344" width="216" height="2" rx="1" fill="rgba(255,255,255,0.28)"/>
 
-  <!-- "C01" — exam code subtitle -->
+  <!-- "C02" — exam code subtitle -->
   <text x="256" y="426"
     text-anchor="middle"
     font-family="-apple-system,'Helvetica Neue',Helvetica,Arial,sans-serif"
     font-weight="300"
     font-size="72"
     letter-spacing="20"
-    fill="rgba(255,255,255,0.58)">C01</text>
+    fill="rgba(255,255,255,0.58)">C02</text>
 </svg>
